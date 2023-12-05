@@ -1,0 +1,10 @@
+^C:\SRC\AOC\PUZZLE-1\BUILD\CMAKEFILES\FF9C3499180D473E7E29C2E37CAB5237\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/src/AoC/puzzle-1 -BC:/src/AoC/puzzle-1/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/src/AoC/puzzle-1/build/puzzle-1.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
