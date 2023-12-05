@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\src\2023-Advent-Of-Code-Solutions\puzzle-3\part-1\build\CMakeFiles\880e03da8082298bce1e8dd92ddef7a0\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{62EDF03E-9796-3A5E-91AA-AEED01D9DBF9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

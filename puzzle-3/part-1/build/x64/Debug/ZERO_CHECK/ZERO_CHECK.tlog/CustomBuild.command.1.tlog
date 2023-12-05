@@ -1,0 +1,10 @@
+^C:\SRC\2023-ADVENT-OF-CODE-SOLUTIONS\PUZZLE-3\PART-1\BUILD\CMAKEFILES\880E03DA8082298BCE1E8DD92DDEF7A0\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1 -BC:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/puzzle-3-pt-1.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
