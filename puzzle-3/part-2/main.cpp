@@ -7,7 +7,7 @@ bool isStar(int);
 bool isNum(int);
 bool isTwoNum(std::vector<std::vector<int>> &, int, int);
 int getTwoNumProd(std::vector<std::vector<int>> &, int, int);
-void printPuzzle(std::vector<std::vector<int>>);
+void printArr(std::vector<std::vector<int>>);
 int getNum(std::vector<int>);
 
 int main(){
@@ -55,10 +55,19 @@ bool isNum(int num){
     return false;
 }
 
-void printPuzzle(std::vector<std::vector<int>> map){
-    for(int i = 0; i < map.size(); i++){
-        for(int j = 0; j < map[0].size(); j++){
-            std::cout << map[i][j] << " ";
+void printArr(std::vector<std::vector<int>> arr){
+    for(int i = 0; i < arr.size(); i++){
+        for(int j = 0; j < arr[0].size(); j++){
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+void printArr(std::vector<std::vector<bool>> arr){
+        for(int i = 0; i < arr.size(); i++){
+            for(int j = 0; j < arr[0].size(); j++){
+                std::cout << arr[i][j] << " ";
         }
         std::cout << std::endl;
     }
@@ -104,38 +113,38 @@ int getTwoNumProd(std::vector<std::vector<int>> &arr, int x, int y){
     //extrapolate the full number based on the position of the number flags
     int ret = 1;
     bool num_flag = false;
-    bool num1_flag = false;
-    bool num2_flag = false;
-    std::vector<int> temp;
 
+    std::vector<int> temp;
     for(int i = -1; i < 2; i++){
-        num_flag = false; // removes the flag when going to the next row
+        //reset variables to make sure there is no data carried from row to row
+        temp.clear();
+        num_flag = false; 
+
         for(int j = -3; j < 4; j++){
             //fills the check to see if the current temp indeed contains one of the adjacent numbers
+            //num_flag will be true if the iterator is looking at a true value in num_pos (meaning that it is a number we care about)
             if(j >= -1 && j <= 1){
                 if(num_pos[i+1][j+1]){
                     num_flag = true;
                 }
             }
-            if(isNum(arr[i + x][j + y])){
+
+            //process the value at the i,j location
+            if(isNum(arr[i + x][j + y])){ //check to see if it is a number, if it is push it to the array
                 temp.push_back(arr[i + x][j + y] - 48);
-            }else if(temp.size() != 0 && !num_flag){
+            }else if(temp.size() != 0 && !num_flag){ //if it is not a number and num_flag is false, the delete temp because it contains a value we dont care about
                 temp.clear();
-            }else if(temp.size() != 0 && num_flag){
-                std::cout << getNum(temp) << " ";
+            }else if(temp.size() != 0 && num_flag){ //if it is not a numberand num_flag is true, then temp is filled with a value we care about and want to store
                 ret *= getNum(temp);
-                temp.clear();
+                temp.clear(); //clear temp and flag to allow us to find the next number if this is the first
                 num_flag = false;
             }
         }
+        //process temp for when the last value of the inner loop ends with a number
         if(temp.size() != 0 && num_flag){
-            std::cout << getNum(temp) << " ";
             ret *= getNum(temp);
-            temp.clear();
-            num_flag = false;
         }
     }
-    std::cout << ret << std::endl;
     return ret;
 }
 

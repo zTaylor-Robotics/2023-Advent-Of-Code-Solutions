@@ -43,7 +43,6 @@ int main(){
             }else if(temp.size() != 0){
                 if(flag){
                     ans += getNum(temp);
-                    std::cout << getNum(temp) << std::endl;
                 }
                 temp.clear(); flag = false;
             }else flag = false;
