@@ -20,12 +20,14 @@ int main(){
 
     //copy puzzle from file into a vector array
     getPuzzle(puzzle, file_name);
+    std::vector<int> cards_won_log(puzzle.size(), 1);
 
     //iterate through the array row by row
     for(int i = 0; i < puzzle.size(); i++){
+        //if(cards_won_log[i] == 0) break;
         //clear out the win_log to setup the next set
         reset(win_log);
-
+        count = 0;
         //iterate through the winning numbers and fill the winlog.
         for(int j = 0; j < 32; j++){
             if(isNum(puzzle[i][j])){
@@ -53,13 +55,16 @@ int main(){
             }
             temp.clear();
         }
-        if(count > 0){
-            ans += pow(2, count - 1);
-            std::cout << "Row " << i << " Score: " << pow(2, count - 1) << std::endl;
-            count = 0;
+
+        for(int n = 0; n < count; n++){
+            if(i+n+1 < cards_won_log.size()){
+                cards_won_log[i+n+1] += cards_won_log[i];
+            }
         }
     }
-
+    for(int i = 0; i < cards_won_log.size(); i++){
+        ans += cards_won_log[i];
+    }
     std::cout << ans << std::endl;
     system("pause");
     return 0;
