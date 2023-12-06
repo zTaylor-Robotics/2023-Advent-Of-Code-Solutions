@@ -4,16 +4,16 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
       - "CMakeLists.txt:3 (project)"
     message: |
-      The system is: Windows - 10.0.19045 - AMD64
+      The system is: Windows - 10.0.22631 - AMD64
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:3 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
@@ -24,9 +24,9 @@ events:
       The output was:
       0
       MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-      Build started 12/4/2023 11:36:20 PM.
+      Build started 12/5/2023 11:41:44 AM.
       
-      Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -39,7 +39,7 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdC\\CompilerIdC.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -47,13 +47,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:03.01
+      Time Elapsed 00:00:00.96
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -61,14 +61,14 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/3.26.0/CompilerIdC/CompilerIdC.exe
+        C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/3.28.0-rc5/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:3 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
@@ -79,9 +79,9 @@ events:
       The output was:
       0
       MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-      Build started 12/4/2023 11:36:24 PM.
+      Build started 12/5/2023 11:41:45 AM.
       
-      Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -94,7 +94,7 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdCXX\\CompilerIdCXX.exe
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -102,13 +102,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.26.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\3.28.0-rc5\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:02.80
+      Time Elapsed 00:00:00.94
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -116,19 +116,19 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/3.26.0/CompilerIdCXX/CompilerIdCXX.exe
+        C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/3.28.0-rc5/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "try_compile-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:3 (project)"
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-t5pjav"
-      binary: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-t5pjav"
+      source: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-9ttb0k"
+      binary: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-9ttb0k"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
@@ -137,52 +137,53 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-t5pjav
+        Change Dir: 'C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-9ttb0k'
         
-        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_605aa.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-        Build started 12/4/2023 11:36:27 PM.
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7a550.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.3+195e7f5a3 for .NET Framework
+        Build started 12/5/2023 11:41:46 AM.
         
-        Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t5pjav\\cmTC_605aa.vcxproj" on node 1 (default targets).
+        Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9ttb0k\\cmTC_7a550.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_605aa.dir\\Debug\\".
+          Creating directory "cmTC_7a550.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t5pjav\\Debug\\".
-          Creating directory "cmTC_605aa.dir\\Debug\\cmTC_605aa.tlog\\".
+          Creating directory "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9ttb0k\\Debug\\".
+          Creating directory "cmTC_7a550.dir\\Debug\\cmTC_7a550.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_605aa.dir\\Debug\\cmTC_605aa.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_605aa.dir\\Debug\\cmTC_605aa.tlog\\unsuccessfulbuild".
+          Creating "cmTC_7a550.dir\\Debug\\cmTC_7a550.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_7a550.dir\\Debug\\cmTC_7a550.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_605aa.dir\\Debug\\\\" /Fd"cmTC_605aa.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7a550.dir\\Debug\\\\" /Fd"cmTC_7a550.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33130 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_605aa.dir\\Debug\\\\" /Fd"cmTC_605aa.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_7a550.dir\\Debug\\\\" /Fd"cmTC_7a550.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t5pjav\\Debug\\cmTC_605aa.exe" /INCREMENTAL /ILK:"cmTC_605aa.dir\\Debug\\cmTC_605aa.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-t5pjav/Debug/cmTC_605aa.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-t5pjav/Debug/cmTC_605aa.lib" /MACHINE:X64  /machine:x64 cmTC_605aa.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_605aa.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t5pjav\\Debug\\cmTC_605aa.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9ttb0k\\Debug\\cmTC_7a550.exe" /INCREMENTAL /ILK:"cmTC_7a550.dir\\Debug\\cmTC_7a550.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-9ttb0k/Debug/cmTC_7a550.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-9ttb0k/Debug/cmTC_7a550.lib" /MACHINE:X64  /machine:x64 cmTC_7a550.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_7a550.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9ttb0k\\Debug\\cmTC_7a550.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_605aa.dir\\Debug\\cmTC_605aa.tlog\\unsuccessfulbuild".
-          Touching "cmTC_605aa.dir\\Debug\\cmTC_605aa.tlog\\cmTC_605aa.lastbuildstate".
-        Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t5pjav\\cmTC_605aa.vcxproj" (default targets).
+          Deleting file "cmTC_7a550.dir\\Debug\\cmTC_7a550.tlog\\unsuccessfulbuild".
+          Touching "cmTC_7a550.dir\\Debug\\cmTC_7a550.tlog\\cmTC_7a550.lastbuildstate".
+        Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-9ttb0k\\cmTC_7a550.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:02.60
+        Time Elapsed 00:00:00.93
         
       exitCode: 0
   -
     kind: "try_compile-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
-      - "C:/Program Files/CMake/share/cmake-3.26/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:3 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-n0xy0v"
-      binary: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-n0xy0v"
+      source: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-cxs4mp"
+      binary: "C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-cxs4mp"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Ob0 /Od /RTC1"
@@ -191,39 +192,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-n0xy0v
+        Change Dir: 'C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-cxs4mp'
         
-        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_b2233.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.8.3+195e7f5a3 for .NET Framework
-        Build started 12/4/2023 11:36:30 PM.
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_c6fea.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        MSBuild version 17.8.3+195e7f5a3 for .NET Framework
+        Build started 12/5/2023 11:41:47 AM.
         
-        Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n0xy0v\\cmTC_b2233.vcxproj" on node 1 (default targets).
+        Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cxs4mp\\cmTC_c6fea.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_b2233.dir\\Debug\\".
+          Creating directory "cmTC_c6fea.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n0xy0v\\Debug\\".
-          Creating directory "cmTC_b2233.dir\\Debug\\cmTC_b2233.tlog\\".
+          Creating directory "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cxs4mp\\Debug\\".
+          Creating directory "cmTC_c6fea.dir\\Debug\\cmTC_c6fea.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_b2233.dir\\Debug\\cmTC_b2233.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_b2233.dir\\Debug\\cmTC_b2233.tlog\\unsuccessfulbuild".
+          Creating "cmTC_c6fea.dir\\Debug\\cmTC_c6fea.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_c6fea.dir\\Debug\\cmTC_c6fea.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b2233.dir\\Debug\\\\" /Fd"cmTC_b2233.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c6fea.dir\\Debug\\\\" /Fd"cmTC_c6fea.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.38.33130 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b2233.dir\\Debug\\\\" /Fd"cmTC_b2233.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.26\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c6fea.dir\\Debug\\\\" /Fd"cmTC_c6fea.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n0xy0v\\Debug\\cmTC_b2233.exe" /INCREMENTAL /ILK:"cmTC_b2233.dir\\Debug\\cmTC_b2233.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-n0xy0v/Debug/cmTC_b2233.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-n0xy0v/Debug/cmTC_b2233.lib" /MACHINE:X64  /machine:x64 cmTC_b2233.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_b2233.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n0xy0v\\Debug\\cmTC_b2233.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cxs4mp\\Debug\\cmTC_c6fea.exe" /INCREMENTAL /ILK:"cmTC_c6fea.dir\\Debug\\cmTC_c6fea.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-cxs4mp/Debug/cmTC_c6fea.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/src/2023-Advent-Of-Code-Solutions/puzzle-3/part-1/build/CMakeFiles/CMakeScratch/TryCompile-cxs4mp/Debug/cmTC_c6fea.lib" /MACHINE:X64  /machine:x64 cmTC_c6fea.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_c6fea.vcxproj -> C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cxs4mp\\Debug\\cmTC_c6fea.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_b2233.dir\\Debug\\cmTC_b2233.tlog\\unsuccessfulbuild".
-          Touching "cmTC_b2233.dir\\Debug\\cmTC_b2233.tlog\\cmTC_b2233.lastbuildstate".
-        Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-n0xy0v\\cmTC_b2233.vcxproj" (default targets).
+          Deleting file "cmTC_c6fea.dir\\Debug\\cmTC_c6fea.tlog\\unsuccessfulbuild".
+          Touching "cmTC_c6fea.dir\\Debug\\cmTC_c6fea.tlog\\cmTC_c6fea.lastbuildstate".
+        Done Building Project "C:\\src\\2023-Advent-Of-Code-Solutions\\puzzle-3\\part-1\\build\\CMakeFiles\\CMakeScratch\\TryCompile-cxs4mp\\cmTC_c6fea.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.77
+        Time Elapsed 00:00:00.94
         
       exitCode: 0
 ...
