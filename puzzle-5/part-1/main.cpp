@@ -2,22 +2,23 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 
 void getSeeds(std::vector<long long> &, std::ifstream &);
-void getMap(std::vector<std::vector<long long>> &, std::ifstream &);
-long long getMapOutput(std::vector<std::vector<long long>> &, long long);
-void printMap(std::vector<std::vector<long long>> &);
+void getMap(std::map<long long, std::vector<long long>> &, std::ifstream &);
+long long getMapOutput(std::map<long long, std::vector<long long>> &, long long);
+void printMap(std::map<long long, std::vector<long long>> &);
 
 int main(){
     std::string file_name = "../../../puzzle-5.txt";
     std::vector<long long> seeds;
-    std::vector<std::vector<long long>> map_seed2soil;
-    std::vector<std::vector<long long>> map_soil2fert;
-    std::vector<std::vector<long long>> map_fert2water;
-    std::vector<std::vector<long long>> map_water2light;
-    std::vector<std::vector<long long>> map_light2temp;
-    std::vector<std::vector<long long>> map_temp2humidity;
-    std::vector<std::vector<long long>> map_humidity2location;
+    std::map<long long, std::vector<long long>> map_seed2soil;
+    std::map<long long, std::vector<long long>> map_soil2fert;
+    std::map<long long, std::vector<long long>> map_fert2water;
+    std::map<long long, std::vector<long long>> map_water2light;
+    std::map<long long, std::vector<long long>> map_light2temp;
+    std::map<long long, std::vector<long long>> map_temp2humidity;
+    std::map<long long, std::vector<long long>> map_humidity2location;
 
     std::string line;
     std::ifstream file(file_name);
@@ -46,7 +47,6 @@ int main(){
                    getMapOutput(map_fert2water, 
                    getMapOutput(map_soil2fert,
                    getMapOutput(map_seed2soil, seed)))))));
-        std::cout << location << std::endl;
         if(location < smallest_location) smallest_location = location;
     }
 
@@ -86,7 +86,9 @@ void getSeeds(std::vector<long long> &arr, std::ifstream &file){
     return;
 }
 
-void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
+//continues reading the file where getSeeds left off or where the previous call of this function is left off
+//processes a block of digits which represents some sort of conversion like seeds->soil
+void getMap(std::map<long long, std::vector<long long>> &map, std::ifstream &file){
     std::string line;
     bool data_flag = false; //false until a number is found
     
@@ -97,13 +99,11 @@ void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
     }
 
     std::vector<long long> temp; //temp place to store the individual values from the line
-    std::vector<long long> map_temp; //temp vector which stores [left-bound][right-bound][output-input]
     //add iterators to help pull the numbers from the line
     auto itr = line.begin();
     auto start = itr;
     auto end = itr;
-    auto map_itr = map.begin();
-    int map_size = 0;
+
     //go row by row and capture the data of the form [output][input][range] and transform it to an input map [left-bound][right-bound][differnce between input and output]
     while(data_flag){
         //capture the [output][input][range] in the vector<long long> temp
@@ -118,31 +118,13 @@ void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
         end = line.end();
         temp.push_back(stoll(std::string(start, end)));
         
-        //transform [output][input][range] into [left-bound][right-bound][output - input] which realistically means [input][input+range-1][output-input]
-        map_temp.push_back(temp[1]); //input or left-bound
-        map_temp.push_back(temp[1] + temp[2] - 1); //input+range-1 or right-bound
-        map_temp.push_back(temp[0] - temp[1]);
-
-        //insert map_temp into map at its sorted position
-        map_itr = map.begin();
-        map_size = map.size(); //used to detect whether map_temp needs to be inserted at the end
-        while(map_itr != map.end()){
-            if((*map_itr)[0] < map_temp[0]){
-                map_itr++;
-            }else if((*map_itr)[0] > map_temp[0]){
-                map.insert(map_itr, map_temp);
-                break;
-            }
-        }
-        if(map.size() == map_size){
-            map.push_back(map_temp);
-        }
+        //transform [output][input][range] into [left-bound][right-bound][output - input] which realistically means [input][input+range-1][output-input] and insert into the map
+        map[temp[1]] = {temp[1] + temp[2] - 1, temp[0] - temp[1]};
 
         //clean up variables to be reused
         temp.clear();
-        map_temp.clear();
 
-        //Process up here, get line on next iteration
+        //get line on next iteration or break loop when the next line is blank or we reach the end of the file
         if(std::getline(file, line)){
             if(!isdigit(line[0])) data_flag = false;
             itr = line.begin();
@@ -155,22 +137,27 @@ void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
     return;
 }
 
-long long getMapOutput(std::vector<std::vector<long long>> &map, long long input){
-    if(input < map[0][0]) return input;
-    if(input >= map[0][0] && input <= map[0][1]) return input + map[0][2];
-
-    for(int i = 1; i < map.size(); i++){
-        if(input > map[i-1][1] && input < map[i][0]) return input;
-        else if(input >= map[i][0] && input <= map[i][1]) return input + map[i][2];
+long long getMapOutput(std::map<long long, std::vector<long long>> &map, long long input){
+    for(auto& pair: map){
+        if(input < pair.first) return input; //compares input to left bound, in all cases, if input is less than the left bound, then we can assume that the value isnt covered by the table and can be return as just input
+        else if(input >= pair.first && input <= pair.second[0]) return input + pair.second[1]; //if the input lies within the leftbound and the right bound, we can then add the output differential to the input
     }
     return LLONG_MAX;
 }
 
-void printMap(std::vector<std::vector<long long>> &map){
-    for(int i = 0; i < map.size(); i++){
-        for(int j = 0; j < map[0].size(); j++){
-            std::cout << map[i][j] << " ";
-        }
-        std::cout << std::endl;
+void printMap(std::map<long long, std::vector<long long>> &map){
+    long long leftBound = 0; long long rightBound = 0; long long outputDiff = 0;
+    std::vector<long long> values;
+    for(auto& pair: map){
+        leftBound = pair.first;
+        values = pair.second;
+
+        // Access individual elements
+        rightBound = values[0];
+        outputDiff = values[1];
+
+        std::cout << leftBound << " " << rightBound << " " << outputDiff << std::endl;
     }
+    std::cout << std::endl;
+    return;
 }
