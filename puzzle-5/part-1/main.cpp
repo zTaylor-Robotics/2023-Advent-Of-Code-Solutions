@@ -25,17 +25,19 @@ int main(){
     //fill vector<long long> seeds with the list of seeds
     getSeeds(seeds, file);
 
+    //get all information from the puzzle, process the array from [output, input, range] to [input range left bound, input range right bound, input -> output change]
     getMap(map_seed2soil, file);
-    printMap(map_seed2soil);
-    /*getMap(map_soil2fert, file);
+    getMap(map_soil2fert, file);
     getMap(map_fert2water, file);
     getMap(map_water2light, file);
     getMap(map_light2temp, file);
     getMap(map_temp2humidity, file);
-    getMap(map_humidity2location, file);*/
+    getMap(map_humidity2location, file);
 
+    //using getMapOutput to interpret the corresponding map, the following function spits out the location by following the transitions from seed->soil->fert->water->light->temp->humidity->location
+    //then compare that location with the current smallest location
     long long location;
-    long long smallest_location = LLONG_MAX;
+    long long smallest_location = LLONG_MAX; //initial value is the largest possible value of long long as a means of defining the first "smallest" values as the first location returned
     for(auto seed: seeds){
         location = getMapOutput(map_humidity2location, 
                    getMapOutput(map_temp2humidity, 
@@ -44,9 +46,9 @@ int main(){
                    getMapOutput(map_fert2water, 
                    getMapOutput(map_soil2fert,
                    getMapOutput(map_seed2soil, seed)))))));
+        std::cout << location << std::endl;
         if(location < smallest_location) smallest_location = location;
     }
-
 
     //figure out a method for breaking apart the mapping data into an algorithm
 
@@ -87,17 +89,24 @@ void getSeeds(std::vector<long long> &arr, std::ifstream &file){
 void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
     std::string line;
     bool data_flag = false; //false until a number is found
+    
+    //makes sure that the row iterator is pointing at the next row of digits 
     while(!data_flag){
         std::getline(file, line);
         if(isdigit(line[0])) data_flag = true;
     }
 
     std::vector<long long> temp; //temp place to store the individual values from the line
+    std::vector<long long> map_temp; //temp vector which stores [left-bound][right-bound][output-input]
     //add iterators to help pull the numbers from the line
     auto itr = line.begin();
     auto start = itr;
     auto end = itr;
+    auto map_itr = map.begin();
+    int map_size = 0;
+    //go row by row and capture the data of the form [output][input][range] and transform it to an input map [left-bound][right-bound][differnce between input and output]
     while(data_flag){
+        //capture the [output][input][range] in the vector<long long> temp
         while(itr != line.end()){
             if(!isdigit(*itr)){
                 end = itr; //updated end to the current iterator position
@@ -108,8 +117,30 @@ void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
         }
         end = line.end();
         temp.push_back(stoll(std::string(start, end)));
-        map.push_back(temp);
+        
+        //transform [output][input][range] into [left-bound][right-bound][output - input] which realistically means [input][input+range-1][output-input]
+        map_temp.push_back(temp[1]); //input or left-bound
+        map_temp.push_back(temp[1] + temp[2] - 1); //input+range-1 or right-bound
+        map_temp.push_back(temp[0] - temp[1]);
+
+        //insert map_temp into map at its sorted position
+        map_itr = map.begin();
+        map_size = map.size(); //used to detect whether map_temp needs to be inserted at the end
+        while(map_itr != map.end()){
+            if((*map_itr)[0] < map_temp[0]){
+                map_itr++;
+            }else if((*map_itr)[0] > map_temp[0]){
+                map.insert(map_itr, map_temp);
+                break;
+            }
+        }
+        if(map.size() == map_size){
+            map.push_back(map_temp);
+        }
+
+        //clean up variables to be reused
         temp.clear();
+        map_temp.clear();
 
         //Process up here, get line on next iteration
         if(std::getline(file, line)){
@@ -125,13 +156,21 @@ void getMap(std::vector<std::vector<long long>> &map, std::ifstream &file){
 }
 
 long long getMapOutput(std::vector<std::vector<long long>> &map, long long input){
-    return 0;
+    if(input < map[0][0]) return input;
+    if(input >= map[0][0] && input <= map[0][1]) return input + map[0][2];
+
+    for(int i = 1; i < map.size(); i++){
+        if(input > map[i-1][1] && input < map[i][0]) return input;
+        else if(input >= map[i][0] && input <= map[i][1]) return input + map[i][2];
+    }
+    return LLONG_MAX;
 }
 
 void printMap(std::vector<std::vector<long long>> &map){
     for(int i = 0; i < map.size(); i++){
-        for(int j = 0; j < map[0].size(); i++){
-            std::cout << map[i][j] << std::endl;
+        for(int j = 0; j < map[0].size(); j++){
+            std::cout << map[i][j] << " ";
         }
+        std::cout << std::endl;
     }
 }
