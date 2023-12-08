@@ -8,7 +8,7 @@ int main(){
     int ans = 0; int count = 0; int test = 0;
     char first, last, tmpc;
     std::string temp, num, line;
-    std::ifstream ifs("puzzle-1.txt");
+    std::ifstream ifs("../../puzzle-1.txt");
     
     while(std::getline(ifs, line)){
         count = 0;
