@@ -39,24 +39,25 @@ int main(){
     //then compare that location with the current smallest location
     long long location;
     long long smallest_location = LLONG_MAX; //initial value is the largest possible value of long long as a means of defining the first "smallest" values as the first location returned
-
-    /*for(int i = 0; i < seeds.size(); i += 2){
-        for(int j = 0; j < seeds[i+1]; j++){
-            location = getMapOutput(map_humidity2location, 
+    for(auto seed: seeds){
+        location = getMapOutput(map_humidity2location, 
                    getMapOutput(map_temp2humidity, 
                    getMapOutput(map_light2temp, 
                    getMapOutput(map_water2light, 
                    getMapOutput(map_fert2water, 
                    getMapOutput(map_soil2fert,
-                   getMapOutput(map_seed2soil, seeds[i]+j)))))));
-        }
+                   getMapOutput(map_seed2soil, seed)))))));
+        std::cout << location << " ";
         if(location < smallest_location) smallest_location = location;
-    }*/
+    }
+    std::cout << std::endl;
+    //figure out a method for breaking apart the mapping data into an algorithm
 
     std::cout << smallest_location << std::endl;
     //system("pause");
     return 0;
 }
+
 
 void getSeeds(std::vector<long long> &arr, std::ifstream &file){
     //generate the first line containing the list of seeds
@@ -119,7 +120,7 @@ void getMap(std::map<long long, std::vector<long long>> &map, std::ifstream &fil
         temp.push_back(stoll(std::string(start, end)));
         
         //transform [output][input][range] into [left-bound][right-bound][output - input] which realistically means [input][input+range-1][output-input] and insert into the map
-        map[temp[0]] = {temp[0] + temp[2] - 1, temp[1] - temp[0]};
+        map[temp[1]] = {temp[1] + temp[2] - 1, temp[0] - temp[1]};
 
         //clean up variables to be reused
         temp.clear();
@@ -147,16 +148,17 @@ long long getMapOutput(std::map<long long, std::vector<long long>> &map, long lo
 }
 
 void printMap(std::map<long long, std::vector<long long>> &map){
-    long long leftOutBound = 0; long long rightOutBound = 0; long long diff = 0;
+    long long leftBound = 0; long long rightBound = 0; long long outputDiff = 0;
     std::vector<long long> values;
     for(auto& pair: map){
-        leftOutBound = pair.first;
+        leftBound = pair.first;
         values = pair.second;
 
         // Access individual elements
-        rightOutBound = values[0];
-        diff = values[1];
-        std::cout << leftOutBound << " " << rightOutBound << " " << diff <<std::endl;
+        rightBound = values[0];
+        outputDiff = values[1];
+
+        std::cout << leftBound << " " << rightBound << " " << outputDiff << std::endl;
     }
     std::cout << std::endl;
     return;
