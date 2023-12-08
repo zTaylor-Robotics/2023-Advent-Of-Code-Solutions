@@ -17,7 +17,7 @@ int main(){
     //temp values for number of cubes in a game
     int tmpr = 0; int tmpg = 0; int tmpb = 0;
     bool line_state = 1;
-    std::ifstream file("puzzle-2.txt");
+    std::ifstream file("../../../puzzle-2.txt");
     std::string num;
     std::string color;
 
