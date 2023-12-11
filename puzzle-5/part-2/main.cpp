@@ -177,12 +177,15 @@ void updateRanges(std::map<long long, long long> &ranges, std::map<long long, st
 
         while(!next_range){ //keep processing until the next range is called
             //grab most recent version of map
-            map_leftbound = it->first;
-            map_range = it->second[0];
-            map_rightbound = it->first + it->second[0] - 1;
-            map_outdiff = it->second[1];
+            
+            if(it != map.end()){
+                map_leftbound = it->first;
+                map_range = it->second[0];
+                map_rightbound = it->first + it->second[0] - 1;
+                map_outdiff = it->second[1];
+            }
 
-            //begin processing
+            //begin processing the different states - these will split up the input ranges into output ranges
             if(range_leftbound < map_leftbound){
                 if(range_rightbound < map_leftbound){
                     temp_ranges[range_leftbound] = range_range;
