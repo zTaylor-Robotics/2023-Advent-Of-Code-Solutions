@@ -3,22 +3,27 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <time.h>
 
 void getSeeds(std::map<long long, long long>  &, std::ifstream &);
 void getRanges(std::map<long long, long long> &, std::ifstream &);
 void updateRanges(std::map<long long, long long> &, std::map<long long, std::vector<long long>> &);
 
-long long getMapOutput(std::map<long long, std::vector<long long>> &, long long);
-
 void printMap(std::map<long long, std::vector<long long>> &);
 void printRanges(std::map<long long, long long> &); //used to print the seed map for verification
 
 int main(){
+    std::clock_t t = std::clock();
+
     std::string file_name = "./puzzle-5.txt";
     std::ifstream file(file_name);
 
+    int num_ranges = 0;
+
     std::map<long long, long long> ranges; //ordered left bound with the range value in the value pair, 
     getSeeds(ranges, file); //initializes ranges with the seed ranges
+
+    num_ranges = ranges.size();
 
     /*
         Algorithm to get the smallest location value possible with the seeds:
@@ -30,11 +35,12 @@ int main(){
     */
 
    getRanges(ranges, file);
-   printRanges(ranges);
+
    
-   std::cout << ranges.begin()->first << std::endl;
+   std::cout << "answer is: " << ranges.begin()->first << " with "<< ranges.size() << " ranges as compared to the original " << num_ranges << " seed ranges!" << std::endl;
 
     //system("pause");
+    std::cout << "Total Execution time: " <<  (std::clock() - t ) / (float)CLOCKS_PER_SEC << " seconds" << std::endl;
     return 0;
 }
 
@@ -90,9 +96,6 @@ void getRanges(std::map<long long, long long> &ranges, std::ifstream &file){
 
     //go row by row and capture the data of the form [output][input][range] and transform it to an input map [left-bound][right-bound][differnce between input and output]
     while(!endof_file){
-        printRanges(ranges);
-        std::cout << std::endl;
-
         map.clear();
         //makes sure that the row iterator is pointing at the next row of digits 
         while(!data_flag){
