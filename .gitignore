@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.DS_Code
+*.DS_Store
 
 # Compiled Object files
 *.slo
