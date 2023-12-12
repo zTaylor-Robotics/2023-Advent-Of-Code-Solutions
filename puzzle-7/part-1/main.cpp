@@ -31,9 +31,6 @@ int main(){
 
 void readFile(std::map<int, int> &map, std::ifstream &file){
     std::string line;
-    std::string hand;
-    int bid = 0;
-    char type;
 
     while(std::getline(file, line)){
         auto it = line.begin();
