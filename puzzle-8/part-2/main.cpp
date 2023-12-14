@@ -6,8 +6,9 @@
 #include <time.h>
 
 void getTurnList(std::vector<bool> &, std::ifstream &);
-void getMap(std::map<std::string, std::pair<std::string, std::string>> &, std::ifstream &);
-int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &, std::vector<bool> &);
+void getMap(std::map<std::string, std::pair<std::string, std::string>> &, std::map<std::string, char> &,std::ifstream &);
+bool checkGhosts(std::map<std::string, char> &);
+int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &, std::map<std::string, char> &, std::vector<bool> &);
 
 void printMap(std::map<std::string, std::pair<std::string, std::string>> &);
 
@@ -25,12 +26,12 @@ int main(){
     //create map containing all the steps as [key][value] pairs where the key is the
     //milestone and the value is a pair(left milestone,right milestone)
     std::map<std::string, std::pair<std::string, std::string>> ms_map;
-    getMap(ms_map, file);
-
+    std::map<std::string, char> ghost_map;
+    getMap(ms_map, ghost_map, file);
 
     //this is a very bruteforce method for getting the number of steps
     //primarily because of the puzzle context
-    int numsteps = getNumSteps(ms_map, turn_list);
+    int numsteps = getNumSteps(ms_map, ghost_map, turn_list);
 
     std::cout << "Number of Steps: " << numsteps << std::endl;
 
@@ -52,7 +53,7 @@ void getTurnList(std::vector<bool> &list, std::ifstream &file){
     return;
 }
 
-void getMap(std::map<std::string, std::pair<std::string, std::string>> &map, std::ifstream &file){
+void getMap(std::map<std::string, std::pair<std::string, std::string>> &map, std::map<std::string, char> &gmap, std::ifstream &file){
     std::string line, key, left, right;
 
     while(std::getline(file, line)){
@@ -60,22 +61,41 @@ void getMap(std::map<std::string, std::pair<std::string, std::string>> &map, std
         left = line.substr(7, 3);
         right = line.substr(12, 3);
         map[key] = std::pair<std::string, std::string> (left, right);
+        if(key[2] == 'A') gmap[key] = key[2];
     }
 
     return;
 }
 
-int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map, std::vector<bool> &step){
-    std::string current_milestone = "AAA";
-    int count = 0; int vect_it = 0;
+bool checkGhosts(std::map<std::string, char> &gmap){
+    for(auto& ghost: gmap){
+        if(ghost.second != 'Z') return 0;
+    }
+    return 1;
+}
 
-    while(current_milestone != "ZZZ"){
+int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map, std::map<std::string, char> &gmap, std::vector<bool> &step){
+    int count = 0; int vect_it = 0;
+    std::map<std::string, char> temp;
+
+    while(!checkGhosts(gmap) && count < 10000){
         if(vect_it == step.size()) vect_it = 0;
 
-        if(step[vect_it]) current_milestone = map[current_milestone].second;
-        else current_milestone = map[current_milestone].first;
+        for(auto& ghost: gmap){
+            if(step[vect_it]){
+                temp[map[ghost.first].second] = map[ghost.first].second[2];
+            }else temp[map[ghost.first].first] = map[ghost.first].first[2];
+        }
+        gmap = temp;
+
+        for(auto& g: gmap){
+            std::cout << g.second << " ";
+        }
+        std::cout << std::endl;
+        temp.clear();
         count++;
         vect_it++;
+        std::cout << std::endl;
     }
 
     return count;
