@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.26)
 
-project(puzzle-9-pt-2)
+project(solution)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug) 
 
 configure_file(
-    "${CMAKE_SOURCE_DIR}/../puzzle-9.txt" 
-    "${CMAKE_BINARY_DIR}/Debug/puzzle-9.txt"
+    "${CMAKE_SOURCE_DIR}/../data.txt" 
+    "${CMAKE_BINARY_DIR}/Debug/data.txt"
     COPYONLY
 )
 
