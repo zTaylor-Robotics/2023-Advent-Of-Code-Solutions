@@ -2,13 +2,14 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <numeric>
 #include <map>
 #include <time.h>
 
 void getTurnList(std::vector<bool> &, std::ifstream &);
 void getMap(std::map<std::string, std::pair<std::string, std::string>> &, std::map<std::string, char> &,std::ifstream &);
 bool checkGhosts(std::map<std::string, char> &);
-int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &, std::map<std::string, char> &, std::vector<bool> &);
+long long getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &, std::map<std::string, char> &, std::vector<bool> &);
 
 void printMap(std::map<std::string, std::pair<std::string, std::string>> &);
 
@@ -31,7 +32,7 @@ int main(){
 
     //this is a very bruteforce method for getting the number of steps
     //primarily because of the puzzle context
-    int numsteps = getNumSteps(ms_map, ghost_map, turn_list);
+    long long numsteps = getNumSteps(ms_map, ghost_map, turn_list);
 
     std::cout << "Number of Steps: " << numsteps << std::endl;
 
@@ -48,7 +49,7 @@ void getTurnList(std::vector<bool> &list, std::ifstream &file){
         if(c == 'L') list.push_back(false);
         else if(c == 'R') list.push_back(true);
     }
-
+    
     std::getline(file, line); //get the blank line underneath the turn list
     return;
 }
@@ -74,31 +75,42 @@ bool checkGhosts(std::map<std::string, char> &gmap){
     return 1;
 }
 
-int getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map, std::map<std::string, char> &gmap, std::vector<bool> &step){
-    int count = 0; int vect_it = 0;
-    std::map<std::string, char> temp;
+//this took much longer to get to the solution than desired
+//it turns out that the ghosts paths are cyclic and the distance from a -> z = distance from z -> z
+//this means that once we get the length of each path from the start
+//we can find the least common multiple for all of the the paths and that will
+//be the puzzles answer
+long long getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map, std::map<std::string, char> &gmap, std::vector<bool> &step){
+    int count = 0; int vect_it = 0; 
+    char check = ' '; 
+    std::string gtemp; 
+    long long result = 0;
+    //std::map<std::string, char> temp;
+    std::vector<long long> ghosts;
 
-    while(!checkGhosts(gmap) && count < 10000){
-        if(vect_it == step.size()) vect_it = 0;
+    //gets the number of steps to get to the first z which = the num of steps to the next z
+    for(auto& ghost: gmap){
+        vect_it = 0; count = 0;
+        check = ghost.second;
+        gtemp = ghost.first;
 
-        for(auto& ghost: gmap){
-            if(step[vect_it]){
-                temp[map[ghost.first].second] = map[ghost.first].second[2];
-            }else temp[map[ghost.first].first] = map[ghost.first].first[2];
+        while(check != 'Z'){
+            if(vect_it == step.size()) vect_it = 0;
+            if(step[vect_it]) gtemp = map[gtemp].second;
+            else gtemp = map[gtemp].first;
+            check = gtemp[2];
+            vect_it++;
+            count++;
         }
-        gmap = temp;
-
-        for(auto& g: gmap){
-            std::cout << g.second << " ";
-        }
-        std::cout << std::endl;
-        temp.clear();
-        count++;
-        vect_it++;
-        std::cout << std::endl;
+        ghosts.push_back(count);
     }
 
-    return count;
+    result = ghosts[0];
+    for(int i = 1; i < ghosts.size(); i++){
+        result = std::lcm(result, ghosts[i]);
+    }
+
+    return result;
 }
 
 void printMap(std::map<std::string, std::pair<std::string, std::string>> &map){

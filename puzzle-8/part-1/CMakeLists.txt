@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.26)
 
 project(puzzle-8-pt-1)
 
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug) 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug) 
 
 configure_file(
     "${CMAKE_SOURCE_DIR}/../puzzle-8.txt" 
