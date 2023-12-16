@@ -1,9 +1,9 @@
-#include <time.h>
 #include <fstream>
 #include <iostream>
 #include <map>
 #include <numeric>
 #include <string>
+#include <time.h>
 #include <vector>
 
 void getTurnList(std::vector<bool> &, std::ifstream &);
