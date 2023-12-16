@@ -8,13 +8,10 @@
 
 void getTurnList(std::vector<bool> &, std::ifstream &);
 void getMap(std::map<std::string, std::pair<std::string, std::string>> &,
-            std::map<std::string, char> &, std::ifstream &);
-bool checkGhosts(std::map<std::string, char> &);
+            std::vector<std::string> &, std::ifstream &);
 long long
 getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &,
-            std::map<std::string, char> &, std::vector<bool> &);
-
-void printMap(std::map<std::string, std::pair<std::string, std::string>> &);
+            std::vector<std::string> &, std::vector<bool> &);
 
 int main() {
   std::clock_t tot = std::clock();
@@ -29,13 +26,14 @@ int main() {
 
   // create map containing all the steps as [key][value] pairs where the key is
   // the milestone and the value is a pair(left milestone,right milestone)
+  // Simultaneously get the keys which represents the starting point for ghosts
   std::map<std::string, std::pair<std::string, std::string>> ms_map;
-  std::map<std::string, char> ghost_map;
-  getMap(ms_map, ghost_map, file);
+  std::vector<std::string> ghosts;
+  getMap(ms_map, ghosts, file);
 
-  // this is a very bruteforce method for getting the number of steps
-  // primarily because of the puzzle context
-  long long numsteps = getNumSteps(ms_map, ghost_map, turn_list);
+  // trace the paths, get distance values, and then deduce where the ghosts meet
+  // using LCM
+  long long numsteps = getNumSteps(ms_map, ghosts, turn_list);
 
   std::cout << "Number of Steps: " << numsteps << std::endl;
 
@@ -62,27 +60,20 @@ void getTurnList(std::vector<bool> &list, std::ifstream &file) {
 }
 
 void getMap(std::map<std::string, std::pair<std::string, std::string>> &map,
-            std::map<std::string, char> &gmap, std::ifstream &file) {
+            std::vector<std::string> &g, std::ifstream &file) {
   std::string line, key, left, right;
 
+  // Get fill the map with keys and the right and left values for quick grabbing
   while (std::getline(file, line)) {
     key = line.substr(0, 3);
     left = line.substr(7, 3);
     right = line.substr(12, 3);
     map[key] = std::pair<std::string, std::string>(left, right);
     if (key[2] == 'A')
-      gmap[key] = key[2];
+      g.push_back(key);
   }
 
   return;
-}
-
-bool checkGhosts(std::map<std::string, char> &gmap) {
-  for (auto &ghost : gmap) {
-    if (ghost.second != 'Z')
-      return 0;
-  }
-  return 1;
 }
 
 // this took much longer to get to the solution than desired
@@ -92,21 +83,21 @@ bool checkGhosts(std::map<std::string, char> &gmap) {
 // that will be the puzzles answer
 long long
 getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map,
-            std::map<std::string, char> &gmap, std::vector<bool> &step) {
+            std::vector<std::string> &g, std::vector<bool> &step) {
   int count = 0;
   int vect_it = 0;
   char check = ' ';
   std::string gtemp;
   long long result = 0;
-  std::vector<long long> ghosts;
+  std::vector<long long> ghost_paths;
 
   // gets the number of steps to get to the first z which = the num of steps to
   // the next z
-  for (auto &ghost : gmap) {
+  for (auto &ghost : g) {
     vect_it = 0;
     count = 0;
-    check = ghost.second;
-    gtemp = ghost.first;
+    check = 'A';
+    gtemp = ghost;
 
     while (check != 'Z') {
       if (vect_it == step.size())
@@ -119,22 +110,14 @@ getNumSteps(std::map<std::string, std::pair<std::string, std::string>> &map,
       vect_it++;
       count++;
     }
-    ghosts.push_back(count);
+    ghost_paths.push_back(count);
   }
 
   // get LCM of the ghost paths
-  result = ghosts[0];
-  for (int i = 1; i < ghosts.size(); i++) {
-    result = std::lcm(result, ghosts[i]);
+  result = ghost_paths[0];
+  for (int i = 1; i < ghost_paths.size(); i++) {
+    result = std::lcm(result, ghost_paths[i]);
   }
 
   return result;
-}
-
-void printMap(std::map<std::string, std::pair<std::string, std::string>> &map) {
-  for (auto &row : map) {
-    std::cout << row.first << " = (" << row.second.first << ", "
-              << row.second.second << ")" << std::endl;
-  }
-  return;
 }
