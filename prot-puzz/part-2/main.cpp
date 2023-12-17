@@ -8,6 +8,9 @@
 void readFile(std::ifstream &);
 
 int main(){
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
+
     std::clock_t t = std::clock();
 
     std::string file_name = "./data.txt";
@@ -20,8 +23,8 @@ int main(){
 
 void readFile(std::ifstream &file){
     std::string line;
-
-    while(std::getline(file, line)){
+    
+    while(file >> line){
 
     }
     return;
