@@ -2,11 +2,17 @@ cmake_minimum_required(VERSION 3.26)
 
 project(solution)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug) 
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug) 
 
 configure_file(
     "${CMAKE_SOURCE_DIR}/../data.txt" 
     "${CMAKE_BINARY_DIR}/Debug/data.txt"
+    COPYONLY
+)
+
+configure_file(
+    "${CMAKE_SOURCE_DIR}/../data.txt" 
+    "${CMAKE_BINARY_DIR}/Release/data.txt"
     COPYONLY
 )
 

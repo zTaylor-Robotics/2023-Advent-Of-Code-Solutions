@@ -49,10 +49,10 @@ int main() {
 
   std::map<std::pair<int, int>, std::vector<bool>> edges;
   getPathMap(start_pos, pipe_map, edges);
-  print_map(pipe_map);
+  //print_map(pipe_map);
   std::cout << std::endl;
   int num_enclosed = findIntSpaces(pipe_map, edges);
-  print_map(pipe_map);
+  //print_map(pipe_map);
 
   std::cout << "Number of enclosed spaces = " << num_enclosed << std::endl;
   // print_map(pipe_map);
