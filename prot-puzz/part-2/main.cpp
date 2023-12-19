@@ -13,7 +13,7 @@ int main(){
 
     std::clock_t t = std::clock();
 
-    std::string file_name = "./data.txt";
+    std::string file_name = "./data.in";
     std::ifstream file(file_name);
 
     //system("pause");

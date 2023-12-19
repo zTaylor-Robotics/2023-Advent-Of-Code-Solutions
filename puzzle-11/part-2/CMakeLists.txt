@@ -7,8 +7,8 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif() 
 
 configure_file(
-    "${CMAKE_SOURCE_DIR}/../data.txt" 
-    "${CMAKE_BINARY_DIR}/Debug/data.txt"
+    "${CMAKE_SOURCE_DIR}/../data.in" 
+    "${CMAKE_BINARY_DIR}/Debug/data.in"
     COPYONLY
 )
 
