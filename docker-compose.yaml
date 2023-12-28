@@ -1,0 +1,11 @@
+version: '3'
+services:
+  aoc:
+    image: cpp-denv:1.0
+    container_name: aoc
+    volumes:
+      - .:/src
+    stdin_open: true
+    tty: true
+    command: bash
+    restart: "no"
