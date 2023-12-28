@@ -4,6 +4,7 @@
 #include <string>
 #include <time.h>
 #include <vector>
+#include <ctime>
 
 void readFile(std::vector<std::vector<char>> &, std::ifstream &);
 void printGalaxies(std::vector<std::vector<char>> &);
