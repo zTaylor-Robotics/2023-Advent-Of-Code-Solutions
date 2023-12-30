@@ -2,12 +2,11 @@ cmake_minimum_required(VERSION 3.26)
 
 project(solution)
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Debug)
-endif() 
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS "-O3")
 
 configure_file(
-    "${CMAKE_SOURCE_DIR}/../data.in" 
+    "${CMAKE_SOURCE_DIR}/data.in" 
     "${CMAKE_BINARY_DIR}/Debug/data.in"
     COPYONLY
 )
@@ -18,7 +17,7 @@ string(APPEND CMAKE_CXX_FLAGS " -Wall")
 string(APPEND CMAKE_CXX_FLAGS " -Wbuiltin-macro-redefined")
 string(APPEND CMAKE_CXX_FLAGS " -pedantic")
 string(APPEND CMAKE_CXX_FLAGS " -Werror")
-
+string(APPEND CMAKE_CXX_FLAGS " -Wextra")
 
 # clangd completion
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

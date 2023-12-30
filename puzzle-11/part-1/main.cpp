@@ -1,6 +1,6 @@
+#include <cstdint>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <string>
 #include <time.h>
 #include <vector>
@@ -72,10 +72,10 @@ void printGalaxies(std::vector<std::vector<char>> &gmap) {
 void expand(std::vector<std::vector<char>> &gmap) {
   bool exp_flag = true;
 
-  int j = 0;
+  unsigned long j = 0;
   while (j < gmap[0].size()) {
     exp_flag = true;
-    for (int i = 0; i < gmap.size(); i++) {
+    for (unsigned long i = 0; i < gmap.size(); i++) {
       if (gmap[i][j] == '#')
         exp_flag = false;
     }
@@ -92,8 +92,8 @@ void expand(std::vector<std::vector<char>> &gmap) {
 
 void map(std::vector<std::pair<int, int>> &gmap,
          std::vector<std::vector<char>> &g) {
-  for (int i = 0; i < g.size(); i++) {
-    for (int j = 0; j < g[0].size(); j++) {
+  for (unsigned long i = 0; i < g.size(); i++) {
+    for (unsigned long j = 0; j < g[0].size(); j++) {
       if (g[i][j] == '#') {
         gmap.push_back({i, j});
       }
@@ -107,8 +107,8 @@ void map(std::vector<std::pair<int, int>> &gmap,
 
 int getLengths(std::vector<std::pair<int, int>> &gmap) {
   int result = 0;
-  for (int root = 0; root < gmap.size() - 1; root++) {
-    for (int pair = root + 1; pair < gmap.size(); pair++) {
+  for (unsigned long root = 0; root < gmap.size() - 1; root++) {
+    for (unsigned long pair = root + 1; pair < gmap.size(); pair++) {
       result += abs((gmap[pair].first - gmap[root].first)) +
                 abs((gmap[pair].second - gmap[root].second));
     }

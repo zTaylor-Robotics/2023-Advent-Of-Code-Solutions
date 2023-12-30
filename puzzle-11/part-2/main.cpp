@@ -1,8 +1,7 @@
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <string>
-#include <time.h>
+#include <ctime>
 #include <vector>
 
 #define EXPANSE 1000000
@@ -26,7 +25,7 @@ int main() {
 
   readFile(galaxies, file);
   expand(galaxies);
-  printGalaxies(galaxies);
+  //printGalaxies(galaxies);
 
   std::vector<std::pair<int, int>> gmap;
   map(gmap, galaxies);
