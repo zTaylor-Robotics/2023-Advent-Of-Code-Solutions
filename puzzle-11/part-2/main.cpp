@@ -76,15 +76,15 @@ void printGalaxies(std::vector<std::vector<char>> &gmap) {
 void expand(std::vector<std::vector<char>> &gmap) {
   bool exp_flag = true;
 
-  int j = 0;
+  unsigned long j = 0;
   while (j < gmap[0].size()) {
     exp_flag = true;
-    for (int i = 0; i < gmap.size(); i++) {
+    for (unsigned long i = 0; i < gmap.size(); i++) {
       if (gmap[i][j] == '#')
         exp_flag = false;
     }
     if (exp_flag) {
-      for (int i = 0; i < gmap.size(); i++) {
+      for (unsigned long i = 0; i < gmap.size(); i++) {
         gmap[i][j] = '|';
       }
     }
@@ -95,8 +95,8 @@ void expand(std::vector<std::vector<char>> &gmap) {
 
 void map(std::vector<std::pair<int, int>> &gmap,
          std::vector<std::vector<char>> &g) {
-  for (int i = 0; i < g.size(); i++) {
-    for (int j = 0; j < g[0].size(); j++) {
+  for (unsigned long i = 0; i < g.size(); i++) {
+    for (unsigned long j = 0; j < g[0].size(); j++) {
       if (g[i][j] == '#') {
         gmap.push_back({i, j});
       }
@@ -114,7 +114,7 @@ long long getLengths(std::vector<std::pair<int, int>> &gmap,
   std::vector<int> cols(g[0].size(), 0);
   std::vector<int> rows(g[0].size(), 0);
 
-  for (int i = 0; i < g.size(); i++) {
+  for (unsigned long i = 0; i < g.size(); i++) {
     if (g[i][0] == '-') {
       s_count++;
     }
@@ -122,7 +122,7 @@ long long getLengths(std::vector<std::pair<int, int>> &gmap,
   }
 
   s_count = 0;
-  for (int j = 0; j < g.size(); j++) {
+  for (unsigned long j = 0; j < g.size(); j++) {
     if (g[0][j] == '|') {
       s_count++;
     }
@@ -132,8 +132,8 @@ long long getLengths(std::vector<std::pair<int, int>> &gmap,
   long long result = 0;
   int temp_r = 0;
   int temp_c = 0;
-  for (int root = 0; root < gmap.size() - 1; root++) {
-    for (int pair = root + 1; pair < gmap.size(); pair++) {
+  for (unsigned long root = 0; root < gmap.size() - 1; root++) {
+    for (unsigned long pair = root + 1; pair < gmap.size(); pair++) {
       temp_r = (rows[gmap[pair].first] - rows[gmap[root].first]) * EXPANSE -
                1 * (rows[gmap[pair].first] - rows[gmap[root].first]);
       temp_c = (cols[gmap[pair].second] - cols[gmap[root].second]) * EXPANSE -

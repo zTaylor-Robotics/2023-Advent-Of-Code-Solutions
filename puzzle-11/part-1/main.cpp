@@ -34,7 +34,7 @@ int main() {
   std::cout << "Total Execution time: "
             << (std::clock() - t) / (float)CLOCKS_PER_SEC << " seconds"
             << std::endl;
-  return 0;s
+  return 0;
 }
 
 void readFile(std::vector<std::vector<char>> &gmap, std::ifstream &file) {
