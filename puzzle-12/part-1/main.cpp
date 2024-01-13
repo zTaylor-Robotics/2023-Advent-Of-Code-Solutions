@@ -2,11 +2,16 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <map>
 #include <ctime>
 
-int readFile(std::ifstream &);
-int getNumOpt(std::vector<char> &, std::vector<int> &);
+unsigned long readFile(std::ifstream &);
+unsigned long getNum(std::vector<char> &, std::vector<unsigned long> &); //returns the number of good combinations of springs
+void countGoodConfigs(std::vector<char> &, std::vector<unsigned long> &, std::vector<unsigned long> &, unsigned long &, unsigned long &, unsigned long);
+
+std::vector<char> buildConfig(std::vector<unsigned long>, std::vector<unsigned long> &);
+std::vector<char> buildTest(std::vector<unsigned long>, std::vector<unsigned long> &, unsigned long);
+bool cmpConfig(std::vector<char> &, std::vector<char> &);
+
 
 int main(){
     std::ios_base::sync_with_stdio(false);
@@ -17,18 +22,18 @@ int main(){
     std::string file_name = "./data.in";
     std::ifstream file(file_name);
 
-    int result = readFile(file);
+    unsigned long result = readFile(file);
     //system("pause");
     std::cout << "Result = " << result << std::endl;
     std::cout << "Total Execution time: " <<  (std::clock() - t ) / (float)CLOCKS_PER_SEC << " seconds" << std::endl;
     return 0;
 }
 
-int readFile(std::ifstream &file){
+unsigned long readFile(std::ifstream &file){
     std::string line, temp;
     std::vector<char> springs;
-    std::vector<int> groups;
-    int count = 0;
+    std::vector<unsigned long> groups;
+    unsigned long count = 0;
     bool swap = true;
     while(std::getline(file, line)){
         springs.clear(); groups.clear(); temp.clear(); swap = true;
@@ -47,12 +52,85 @@ int readFile(std::ifstream &file){
             }   
         }
         groups.push_back(std::stoi(temp));
-        count += getNumOpt(springs, groups);
+        count += getNum(springs, groups);
     }
     return count;
 }
 
-int getNumOpt(std::vector<char> &springs, std::vector<int> &groups){
+//generate possible strings and compare each string with the base strings: springs
+unsigned long getNum(std::vector<char> &springs, std::vector<unsigned long> &groups){
+    unsigned long count = 0; //temp, change this
 
-    return 0;
+    std::vector<unsigned long> values(groups.size() + 1, 0); //initialize the empty value vector to kick off recursion
+    unsigned long R = springs.size();
+
+    for(unsigned long g: groups){
+        R -= g;
+    }
+    R -= groups.size() - 1;
+    values[0] = R;
+
+    countGoodConfigs(springs, values, groups, count, R, 0);
+    return count;
+}
+
+void countGoodConfigs(std::vector<char> &springs, std::vector<unsigned long> &vals, std::vector<unsigned long> &groups, unsigned long &count, unsigned long &R, unsigned long depth){
+    if(depth >= (vals.size() - 1)){
+        std::vector<char> temp = buildConfig(vals, groups);
+        if(cmpConfig(springs, temp)){
+            count++;
+        }
+        return;
+    }
+
+    for(unsigned long i = 0; i <= vals[depth]; i++){
+        std::vector<unsigned long> temp = vals;
+        temp[depth] -= i;
+        temp[depth+1] = R;
+        for(unsigned long j = 0; j <= depth; j++){
+            temp[depth+1] -= temp[j];
+        }
+
+        std::vector<char> test = buildTest(temp, groups, depth);
+        if(cmpConfig(springs, test)){
+            countGoodConfigs(springs, temp, groups, count, R, depth + 1);
+        }
+    }
+
+    return;
+}
+
+bool cmpConfig(std::vector<char> &springs, std::vector<char> &config){
+    for(unsigned long i = 0; i < config.size(); i++){
+        if(springs[i] == '.' && config[i] == '#'){
+            return false;
+        }else if(springs[i] == '#' && config[i] == '.'){
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<char> buildConfig(std::vector<unsigned long> vals, std::vector<unsigned long> &groups){
+    std::vector<char> config;
+
+    for(unsigned long i = 1; i < vals.size() - 1; i++) vals[i]++; //add in the necessary . between groups of springs
+
+    for(unsigned long i = 0; i < vals.size(); i++){
+        for(unsigned long j = 0; j < vals[i]; j++){config.push_back('.');}
+        if(i < (vals.size() - 1)){for(unsigned long k = 0; k < groups[i]; k++){config.push_back('#');}}
+    }
+    return config;
+}
+
+std::vector<char> buildTest(std::vector<unsigned long> vals, std::vector<unsigned long> &groups, unsigned long depth){
+    std::vector<char> test;
+
+    for(unsigned long i = 1; i < vals.size() - 1; i++) vals[i]++; //add in the necessary . between groups of springs
+        
+    for(unsigned long i = 0; i <= depth; i++){
+        for(unsigned long j = 0; j < vals[i]; j ++) test.push_back('.');
+        for(unsigned long k = 0; k < groups[i]; k ++) test.push_back('#');
+    }
+    return test;
 }
